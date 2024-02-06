@@ -1,3 +1,0 @@
-<batch-artifacts xmlns="http://xmlns.jcp.org/xml/ns/javaee">
-  <ref id="batchlet" class="io.quarkiverse.jberet.deployment.ArtifactBatchlet"/>
-</batch-artifacts>

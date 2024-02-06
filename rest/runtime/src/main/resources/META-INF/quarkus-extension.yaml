@@ -1,8 +1,0 @@
----
-name: "JBeret - REST"
-metadata:
-  keywords:
-  - "jberet-rest"
-  categories:
-  - "rest"
-  status: "experimental"
