@@ -23,6 +23,12 @@ public class AuctionResource {
     @GET
     @Path("/{id}")
     public Response getAuction(@PathParam("id") final Long id) {
-        return Optional.ofNullable(database.get(id)).map(Response::ok).orElse(Response.status(NOT_FOUND)).build();
+        return Optional.ofNullable(database.getById(id)).map(Response::ok).orElse(Response.status(NOT_FOUND)).build();
+    }
+
+    @GET
+    @Path("/all")
+    public Response getAuctionDB() {
+        return Optional.ofNullable(database.get()).map(Response::ok).orElse(Response.status(NOT_FOUND)).build();
     }
 }

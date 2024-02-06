@@ -1,5 +1,7 @@
 package io.quarkiverse.jberet.it.chunk;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -13,7 +15,11 @@ public class AuctionDatabase {
         database.put(auction.getId(), auction);
     }
 
-    Auction get(Long id) {
+    List<Auction> get() {
+        return new ArrayList<>(database.values());
+    }
+
+    Auction getById(Long id) {
         return database.get(id);
     }
 

@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run" type="JarApplication">
+    <option name="JAR_PATH" value="integration-tests/chunk/target/quarkus-app/quarkus-run.jar" />
+    <option name="VM_PARAMETERS" value="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5000" />
+    <option name="WORKING_DIRECTORY" value="C:\Users\LuisD\Proyectos\quarkus-jberet" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2" />
+  </configuration>
+</component>

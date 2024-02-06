@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Build &amp; Run" type="JarApplication">
+    <option name="WORKING_DIRECTORY" value="C:\Users\LuisD\Proyectos\quarkus-jberet" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2">
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Build" run_configuration_type="MavenRunConfiguration" />
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Run" run_configuration_type="JarApplication" />
+    </method>
+  </configuration>
+</component>
