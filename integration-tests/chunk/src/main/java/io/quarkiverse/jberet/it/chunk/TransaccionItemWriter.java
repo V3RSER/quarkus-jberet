@@ -7,14 +7,16 @@ import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
+import model.Transaccion;
+
 @Dependent
 @Named
-public class AuctionItemWriter extends AbstractItemWriter {
+public class TransaccionItemWriter extends AbstractItemWriter {
     @Inject
-    AuctionDatabase database;
+    TransaccionDatabase database;
 
     @Override
     public void writeItems(List<Object> items) {
-        items.stream().map(Auction.class::cast).forEach(database::put);
+        items.stream().map(Transaccion.class::cast).forEach(database::put);
     }
 }

@@ -37,6 +37,26 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>commons-dbutils</groupId>
+      <artifactId>commons-dbutils</artifactId>
+      <version>1.8.0</version>
+    </dependency>
+    <!--    <dependency>-->
+    <!--      <groupId>io.quarkus</groupId>-->
+    <!--      <artifactId>quarkus-hibernate-orm-panache</artifactId>-->
+    <!--    </dependency>-->
+    <!--  para que el datasource sea compatible con mysql  -->
+    <!--    <dependency>-->
+    <!--      <groupId>io.quarkus</groupId>-->
+    <!--      <artifactId>quarkus-jdbc-mysql</artifactId>-->
+    <!--    </dependency>-->
+    <!--  para que el datasource sea compatible con postgresql  -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-jdbc-postgresql</artifactId>
+    </dependency>
   </dependencies>
 
   <build>

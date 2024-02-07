@@ -13,22 +13,22 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/auctions")
+@Path("/transacciones")
 @Produces(MediaType.APPLICATION_JSON)
 @Transactional
-public class AuctionResource {
+public class TransaccionResource {
     @Inject
-    AuctionDatabase database;
+    TransaccionDatabase database;
 
     @GET
     @Path("/{id}")
-    public Response getAuction(@PathParam("id") final Long id) {
+    public Response getTransaccion(@PathParam("id") final Integer id) {
         return Optional.ofNullable(database.getById(id)).map(Response::ok).orElse(Response.status(NOT_FOUND)).build();
     }
 
     @GET
     @Path("/all")
-    public Response getAuctionDB() {
+    public Response getTransaccionDB() {
         return Optional.ofNullable(database.get()).map(Response::ok).orElse(Response.status(NOT_FOUND)).build();
     }
 }
