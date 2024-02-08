@@ -65,8 +65,8 @@ public class BatchResource {
 
         return Response.ok(jobIds.stream()
                 .map(jobId -> quarkusJobOperator.getJobExecution(jobId).getBatchStatus())
-//                .filter(BatchStatus.COMPLETED::equals)
-                .count()).build();
+                //                .filter(BatchStatus.COMPLETED::equals)
+                .collect(Collectors.toList())).build();
     }
 
     @Named("blocking")

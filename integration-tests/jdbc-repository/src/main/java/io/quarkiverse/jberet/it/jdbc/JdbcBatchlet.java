@@ -7,7 +7,7 @@ import jakarta.inject.Named;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
-@Dependent
+@Dependent1
 @Named
 public class JdbcBatchlet extends AbstractBatchlet {
     @ConfigProperty(name = "jdbc.batchlet.fail", defaultValue = "false")

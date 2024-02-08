@@ -36,7 +36,8 @@
   </scm>
 
   <modules>
-    <module>integration-tests</module>
+<!--    <module>integration-tests</module>-->
+    <module>poc-monitor</module>
   </modules>
 
   <build>

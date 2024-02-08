@@ -1,4 +1,4 @@
-package io.quarkiverse.jberet.it.chunk;
+package io.quarkiverse.jberet.it.transaccion;
 
 import static io.quarkus.test.common.http.TestHTTPResourceManager.getUri;
 import static io.restassured.RestAssured.given;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import io.quarkiverse.jberet.it.chunk.BatchResource.JobData;
+import io.quarkiverse.jberet.it.transaccion.BatchResource.JobData;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 import io.restassured.http.Header;
