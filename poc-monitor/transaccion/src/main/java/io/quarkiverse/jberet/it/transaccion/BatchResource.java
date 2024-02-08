@@ -43,7 +43,7 @@ public class BatchResource {
     public Response ejecutarJob() {
         JobOperator jobOperator = BatchRuntime.getJobOperator();
         Properties jobParameters = new Properties();
-        long executionId = jobOperator.start("auctions", jobParameters);
+        long executionId = jobOperator.start("transacciones", jobParameters);
         JobExecution jobExecution = jobOperator.getJobExecution(executionId);
 
         return Response.ok(new JobData(executionId, jobExecution.getBatchStatus().toString())).build();
