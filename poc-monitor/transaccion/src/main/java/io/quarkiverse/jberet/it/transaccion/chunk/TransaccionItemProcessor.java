@@ -2,19 +2,17 @@ package io.quarkiverse.jberet.it.transaccion.chunk;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Logger;
 
 import jakarta.batch.api.chunk.ItemProcessor;
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Named;
 
-import io.quarkiverse.jberet.it.transaccion.ThreadPartitionJobResource;
 import io.quarkiverse.jberet.it.transaccion.dummy.Transaccion;
+import io.quarkus.logging.Log;
 
 @Dependent
 @Named
 public class TransaccionItemProcessor implements ItemProcessor {
-    private static final Logger LOG = Logger.getLogger(String.valueOf(ThreadPartitionJobResource.class));
 
     @Override
     public Object processItem(Object item) throws SQLException {
@@ -26,7 +24,7 @@ public class TransaccionItemProcessor implements ItemProcessor {
         transaccion.setFecha(resultSet.getString(3));
         transaccion.setMonto(resultSet.getDouble(4));
 
-        LOG.info("Procesando transacción id: " + transaccion.getNumeroTransaccion());
+        Log.info("Procesando transacción id: " + transaccion.getNumeroTransaccion());
 
         return transaccion;
     }

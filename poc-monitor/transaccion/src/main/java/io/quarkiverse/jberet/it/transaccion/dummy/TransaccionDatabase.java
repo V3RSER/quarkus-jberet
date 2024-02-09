@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import java.util.logging.Logger;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
-import io.quarkiverse.jberet.it.transaccion.ThreadPartitionJobResource;
+import io.quarkus.logging.Log;
 
 @ApplicationScoped
 public class TransaccionDatabase {
     private final ConcurrentMap<Integer, Transaccion> database = new ConcurrentHashMap<>();
-    private static final Logger LOG = Logger.getLogger(String.valueOf(ThreadPartitionJobResource.class));
 
     private Integer datosEnviados = 0;
 
     public void put(Transaccion transaccion) {
+        Log.info("Enviando transacción id: " + transaccion.getNumeroTransaccion());
         database.put(transaccion.getNumeroTransaccion(), transaccion);
     }
 
     public void sum(Transaccion transaccion) {
+        Log.info("Enviando transacción id: " + transaccion.getNumeroTransaccion());
         this.datosEnviados++;
     }
 

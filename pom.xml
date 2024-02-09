@@ -13,6 +13,14 @@
   <packaging>pom</packaging>
   <name>Quarkus - JBeret - Parent</name>
 
+<!--  <repositories>-->
+<!--    <repository>-->
+<!--      <id>jboss-public-repository-group</id>-->
+<!--      <name>JBoss Public Repository Group</name>-->
+<!--      <url>http://repository.jboss.org/nexus/content/groups/public/</url>-->
+<!--    </repository>-->
+<!--  </repositories>-->
+
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>

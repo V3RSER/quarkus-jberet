@@ -2,7 +2,6 @@ package io.quarkiverse.jberet.it.transaccion.chunk;
 
 import java.io.Serializable;
 import java.sql.*;
-import java.util.logging.Logger;
 
 import jakarta.batch.api.chunk.ItemReader;
 import jakarta.enterprise.context.Dependent;
@@ -13,7 +12,7 @@ import jakarta.transaction.Transactional;
 import org.apache.commons.dbutils.DbUtils;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
-import io.quarkiverse.jberet.it.transaccion.ThreadPartitionJobResource;
+import io.quarkus.logging.Log;
 
 @Dependent
 @Named
@@ -33,8 +32,6 @@ public class TransaccionItemReader implements ItemReader {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
-    private static final Logger LOG = Logger.getLogger(String.valueOf(ThreadPartitionJobResource.class));
-
     @Override
     public void open(Serializable checkpoint) throws Exception {
         connection = DriverManager.getConnection(url, username, password);
@@ -45,12 +42,14 @@ public class TransaccionItemReader implements ItemReader {
                         "INNER JOIN cuentas c ON t.numero_cuenta = c.numero_cuenta " +
                         "WHERE c.marcada = true;",
                 ResultSet.TYPE_FORWARD_ONLY,
-                ResultSet.CONCUR_READ_ONLY
-        //                ResultSet.HOLD_CURSORS_OVER_COMMIT
+                ResultSet.CONCUR_READ_ONLY,
+                ResultSet.CLOSE_CURSORS_AT_COMMIT
+        //                        ResultSet.HOLD_CURSORS_OVER_COMMIT
         );
-        LOG.info("Preparando consulta para obtener transacciones");
+        preparedStatement.setFetchSize(1);
+        Log.info("Preparando consulta para obtener datos");
         resultSet = preparedStatement.executeQuery();
-        LOG.info("Transacciones obtenidas de la base de datos");
+        Log.info("Datos obtenidos de la base de datos");
     }
 
     @Override
@@ -59,6 +58,34 @@ public class TransaccionItemReader implements ItemReader {
         DbUtils.closeQuietly(preparedStatement);
         DbUtils.closeQuietly(connection);
     }
+
+    //    @Override
+    //    public void close() throws Exception {
+    //        if (preparedStatement != null || connection != null || resultSet != null) {
+    //            try {
+    //                resultSet.close();
+    //            } catch (final SQLException e) {
+    //                Log.error("Failed to close ResultSet", e);
+    //            }
+    //            if (preparedStatement != null) {
+    //                try {
+    //                    preparedStatement.close();
+    //                } catch (final SQLException e) {
+    //                    Log.error("Failed to close PreparedStatement", e);
+    //                }
+    //            }
+    //            if (connection != null) {
+    //                try {
+    //                    connection.close();
+    //                } catch (final SQLException e) {
+    //                    Log.error("Failed to close connection", e);
+    //                }
+    //            }
+    //            connection = null;
+    //            preparedStatement = null;
+    //            resultSet = null;
+    //        }
+    //    }
 
     @Override
     public Object readItem() throws Exception {
