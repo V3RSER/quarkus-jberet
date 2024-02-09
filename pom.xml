@@ -108,6 +108,11 @@
 
   <dependencyManagement>
     <dependencies>
+      <!--    -->
+      <dependency>
+        <groupId>org.jberet</groupId>
+        <artifactId>jberet-support</artifactId>
+      </dependency>
       <dependency>
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-bom</artifactId>

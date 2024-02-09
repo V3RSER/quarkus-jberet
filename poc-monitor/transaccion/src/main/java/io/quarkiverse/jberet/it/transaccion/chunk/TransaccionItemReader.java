@@ -38,16 +38,16 @@ public class TransaccionItemReader implements ItemReader {
     @Override
     public void open(Serializable checkpoint) throws Exception {
         connection = DriverManager.getConnection(url, username, password);
-        
+
         preparedStatement = this.connection.prepareStatement(
                 "SELECT t.*" +
                         "FROM transacciones t " +
                         "INNER JOIN cuentas c ON t.numero_cuenta = c.numero_cuenta " +
                         "WHERE c.marcada = true;",
-
                 ResultSet.TYPE_FORWARD_ONLY,
-                ResultSet.CONCUR_READ_ONLY,
-                ResultSet.HOLD_CURSORS_OVER_COMMIT);
+                ResultSet.CONCUR_READ_ONLY
+        //                ResultSet.HOLD_CURSORS_OVER_COMMIT
+        );
         LOG.info("Preparando consulta para obtener transacciones");
         resultSet = preparedStatement.executeQuery();
         LOG.info("Transacciones obtenidas de la base de datos");

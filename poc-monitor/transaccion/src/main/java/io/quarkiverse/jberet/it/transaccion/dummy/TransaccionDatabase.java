@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import io.quarkiverse.jberet.it.transaccion.ThreadPartitionJobResource;
-import model.Transaccion;
 
 @ApplicationScoped
 public class TransaccionDatabase {

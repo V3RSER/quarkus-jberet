@@ -9,7 +9,7 @@ import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Named;
 
 import io.quarkiverse.jberet.it.transaccion.ThreadPartitionJobResource;
-import model.Transaccion;
+import io.quarkiverse.jberet.it.transaccion.dummy.Transaccion;
 
 @Dependent
 @Named

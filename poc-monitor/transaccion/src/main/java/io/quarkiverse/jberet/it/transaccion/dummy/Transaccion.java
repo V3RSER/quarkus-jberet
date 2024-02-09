@@ -1,4 +1,4 @@
-package model;
+package io.quarkiverse.jberet.it.transaccion.dummy;
 
 //import jakarta.persistence.*;
 //
