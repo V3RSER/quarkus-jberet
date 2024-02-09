@@ -18,7 +18,7 @@ public class TransaccionItemWriter extends AbstractItemWriter {
 
     @Override
     public void writeItems(List<Object> items) {
-        //        items.stream().map(Transaccion.class::cast).forEach(database::put);
-        items.stream().map(Transaccion.class::cast).forEach(database::sum);
+        //                items.stream().map(Transaccion.class::cast).forEach(database::montarEnMemoria);
+        items.stream().map(Transaccion.class::cast).forEach(database::contarEnviados);
     }
 }

@@ -3,6 +3,7 @@ package io.quarkiverse.jberet.it.transaccion.chunk;
 import java.io.Serializable;
 import java.sql.*;
 
+import jakarta.batch.api.BatchProperty;
 import jakarta.batch.api.chunk.ItemReader;
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
@@ -28,6 +29,13 @@ public class TransaccionItemReader implements ItemReader {
     @ConfigProperty(name = "quarkus.datasource.password")
     String password;
 
+    @Inject
+    @BatchProperty(name = "start")
+    int start;
+    @Inject
+    @BatchProperty(name = "registrosPorHilo")
+    int registrosPorHilo;
+
     private Connection connection;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
@@ -40,16 +48,17 @@ public class TransaccionItemReader implements ItemReader {
                 "SELECT t.*" +
                         "FROM transacciones t " +
                         "INNER JOIN cuentas c ON t.numero_cuenta = c.numero_cuenta " +
-                        "WHERE c.marcada = true;",
+                        "WHERE c.marcada = true " +
+                        "LIMIT  " + registrosPorHilo + " OFFSET " + start,
                 ResultSet.TYPE_FORWARD_ONLY,
                 ResultSet.CONCUR_READ_ONLY,
                 ResultSet.CLOSE_CURSORS_AT_COMMIT
         //                        ResultSet.HOLD_CURSORS_OVER_COMMIT
         );
-        preparedStatement.setFetchSize(1);
-        Log.info("Preparando consulta para obtener datos");
+        preparedStatement.setFetchSize(3);
+        Log.info("Preparando consulta para obtener datos desde id: " + start + " hasta id: " + (registrosPorHilo + start));
         resultSet = preparedStatement.executeQuery();
-        Log.info("Datos obtenidos de la base de datos");
+        Log.info("Datos obtenidos: " + resultSet.getFetchSize());
     }
 
     @Override

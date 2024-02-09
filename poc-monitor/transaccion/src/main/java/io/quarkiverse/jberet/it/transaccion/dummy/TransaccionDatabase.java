@@ -15,12 +15,12 @@ public class TransaccionDatabase {
 
     private Integer datosEnviados = 0;
 
-    public void put(Transaccion transaccion) {
+    public void montarEnMemoria(Transaccion transaccion) {
         Log.info("Enviando transacción id: " + transaccion.getNumeroTransaccion());
         database.put(transaccion.getNumeroTransaccion(), transaccion);
     }
 
-    public void sum(Transaccion transaccion) {
+    public void contarEnviados(Transaccion transaccion) {
         Log.info("Enviando transacción id: " + transaccion.getNumeroTransaccion());
         this.datosEnviados++;
     }

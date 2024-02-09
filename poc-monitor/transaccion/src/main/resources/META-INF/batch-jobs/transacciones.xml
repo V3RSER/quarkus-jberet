@@ -2,13 +2,14 @@
 <job id="transaccion" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
     <step id="transaccionChunk">
         <chunk item-count="5">
-            <reader ref="transaccionItemReader"/>
+            <reader ref="transaccionItemReader">
+                <properties>
+                    <property name="start" value="#{jobParameters['start']}"/>
+                    <property name="registrosPorHilo" value="#{jobParameters['registrosPorHilo']}"/>
+                </properties>
+            </reader>
             <processor ref="transaccionItemProcessor"/>
             <writer ref="transaccionItemWriter"/>
         </chunk>
-        <!--    <partition>-->
-        <!--      <plan partitions="2">-->
-        <!--      </plan>-->
-        <!--    </partition>-->
     </step>
 </job>
