@@ -58,7 +58,7 @@ public class TransaccionItemReader implements ItemReader {
         preparedStatement.setFetchSize(3);
         Log.info("Preparando consulta para obtener datos desde id: " + start + " hasta id: " + (registrosPorHilo + start));
         resultSet = preparedStatement.executeQuery();
-        Log.info("Datos obtenidos: " + resultSet.getFetchSize());
+        Log.info("Datos obtenidos: " + registrosPorHilo);
     }
 
     @Override
