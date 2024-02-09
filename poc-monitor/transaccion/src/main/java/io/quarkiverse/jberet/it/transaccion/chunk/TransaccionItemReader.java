@@ -1,4 +1,4 @@
-package io.quarkiverse.jberet.it.transaccion;
+package io.quarkiverse.jberet.it.transaccion.chunk;
 
 import java.io.Serializable;
 import java.sql.*;
@@ -12,6 +12,8 @@ import jakarta.transaction.Transactional;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+
+import io.quarkiverse.jberet.it.transaccion.ThreadPartitionJobResource;
 
 @Dependent
 @Named
@@ -31,12 +33,12 @@ public class TransaccionItemReader implements ItemReader {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
-    private static final Logger LOG = Logger.getLogger(String.valueOf(BatchResource.class));
+    private static final Logger LOG = Logger.getLogger(String.valueOf(ThreadPartitionJobResource.class));
 
     @Override
     public void open(Serializable checkpoint) throws Exception {
         connection = DriverManager.getConnection(url, username, password);
-
+        
         preparedStatement = this.connection.prepareStatement(
                 "SELECT t.*" +
                         "FROM transacciones t " +

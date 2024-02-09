@@ -1,4 +1,4 @@
-package io.quarkiverse.jberet.it.transaccion;
+package io.quarkiverse.jberet.it.transaccion.dummy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,22 +8,21 @@ import java.util.logging.Logger;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
+import io.quarkiverse.jberet.it.transaccion.ThreadPartitionJobResource;
 import model.Transaccion;
 
 @ApplicationScoped
 public class TransaccionDatabase {
     private final ConcurrentMap<Integer, Transaccion> database = new ConcurrentHashMap<>();
-    private static final Logger LOG = Logger.getLogger(String.valueOf(BatchResource.class));
+    private static final Logger LOG = Logger.getLogger(String.valueOf(ThreadPartitionJobResource.class));
 
     private Integer datosEnviados = 0;
 
-    void put(Transaccion transaccion) {
-        LOG.info("Guardando transacción id: " + transaccion.getNumeroTransaccion());
+    public void put(Transaccion transaccion) {
         database.put(transaccion.getNumeroTransaccion(), transaccion);
     }
 
-    void sum(Transaccion transaccion) {
-        LOG.info("Enviando transacción id: " + transaccion.getNumeroTransaccion());
+    public void sum(Transaccion transaccion) {
         this.datosEnviados++;
     }
 

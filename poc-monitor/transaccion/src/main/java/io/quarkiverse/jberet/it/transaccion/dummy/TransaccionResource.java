@@ -1,4 +1,4 @@
-package io.quarkiverse.jberet.it.transaccion;
+package io.quarkiverse.jberet.it.transaccion.dummy;
 
 import static jakarta.ws.rs.core.Response.Status.NOT_FOUND;
 

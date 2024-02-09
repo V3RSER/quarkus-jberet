@@ -1,4 +1,4 @@
-package io.quarkiverse.jberet.it.transaccion;
+package io.quarkiverse.jberet.it.transaccion.chunk;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
+import io.quarkiverse.jberet.it.transaccion.dummy.TransaccionDatabase;
 import model.Transaccion;
 
 @Dependent
